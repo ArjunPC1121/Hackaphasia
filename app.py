@@ -1,6 +1,7 @@
-from flask import Flask, render_template, Response, url_for
+from flask import Flask, render_template, Response, url_for,request
 import pandas as pd
 from utilities.quiz import recommend_by_difficulty
+from utilities.scholarship import train,scholarship
 
 app = Flask(__name__)
 
@@ -42,7 +43,16 @@ def courses():
     #print("Courses")
     return "Courses Page"
 @app.route("/scholarship")
-def scholarship():
+def scholarship_page():
     return render_template("scholarship.html")
+@app.route("/eligibility",methods=['POST'])
+def eligibility():
+    cgpa=request.form.get("cgpa")
+    income=request.form.get("income")
+    citizen=request.form.get("citizen")
+    degree=request.form.get("degree")
+    arg_list=train()
+    res=scholarship(arg_list[0],arg_list[1],arg_list[2],cgpa,income,citizen,degree)
+    return render_template("eligibility.html",res=res)
 if __name__ == "__main__":
     app.run(debug=True)
