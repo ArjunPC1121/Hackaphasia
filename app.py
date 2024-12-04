@@ -28,5 +28,9 @@ def quiz():
     print(recommended_courses.to_dict(orient='records'))  # Debugging step
     return render_template("quiz.html", recommended_courses=recommended_courses.to_dict(orient='records'))
 
+@app.route("/options")
+def options():
+    return render_template("options.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
