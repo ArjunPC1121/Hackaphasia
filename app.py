@@ -31,6 +31,18 @@ def quiz():
 @app.route("/options")
 def options():
     return render_template("options.html")
+app.py
+@app.route("/hugging")
+def hugging():
+    #print("hugging")
+    return "Hugging Page"
 
+@app.route("/courses")
+def courses():
+    #print("Courses")
+    return "Courses Page"
+@app.route("/scholarship")
+def scholarship():
+    return render_template("scholarship.html")
 if __name__ == "__main__":
     app.run(debug=True)
