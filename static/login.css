@@ -42,11 +42,11 @@ body {
   transition: transform 0.5s, height 0.2s ease;
 }
 
-.wrapper.active .form-box-login {
+.wrapper.active .form-box-login .form-box-register {
   transition: transform 0.18s ease;
   transform: translate(0);
 }
-.wrapper.active .form-box-login {
+.wrapper.active .form-box-login .form-box-register{
   position: absolute;
   transform: translateX(-400px);
 }
@@ -69,11 +69,11 @@ body {
   z-index: 1;
 }
 /*login section */
-.wrapper .form-box-login {
+.wrapper .form-box-login .form-box-register{
   width: 100%;
   padding: 40px;
 }
-.form-box-login h2 {
+.form-box-login .form-box-register h2 {
   font-size: 2em;
   color: white;
   text-align: center;

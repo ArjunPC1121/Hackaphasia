@@ -1,6 +1,6 @@
-{%extends '/layouts/home_layout.html'%}
-{%block content%}
+{% extends 'home_layout.html' %}
+{% block content %}
 <h1> Home Page</h1>
-
-<a align = "center" href="{{url_for("login")}}">Login</a>
-{%endblock%}
+<button type="submit" onclick="started()">Get Started</button>
+<a align="center" href="{{ url_for('login') }}">Login</a>
+{% endblock %}
