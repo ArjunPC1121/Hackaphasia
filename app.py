@@ -31,7 +31,7 @@ def quiz():
 @app.route("/options")
 def options():
     return render_template("options.html")
-app.py
+
 @app.route("/hugging")
 def hugging():
     #print("hugging")
