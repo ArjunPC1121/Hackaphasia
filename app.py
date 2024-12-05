@@ -1,8 +1,8 @@
-from flask import Flask, render_template, Response, url_for,request
+from flask import Flask,jsonify, render_template, Response, url_for,request
 import pandas as pd
 from utilities.quiz import recommend_by_difficulty
 from utilities.scholarship import train,scholarship
-
+from utilities.translator import translate_and_speak
 app = Flask(__name__)
 
 data = pd.read_csv("coursea_data.csv")
@@ -33,18 +33,30 @@ def quiz():
 def options():
     return render_template("options.html")
 
-@app.route("/hugging")
-def hugging():
-    #print("hugging")
-    return "Hugging Page"
+@app.route("/translate", methods=["GET", "POST"])
+def translate_page():
+    if request.method == "GET":
+        return render_template("translator.html")
+    elif request.method == "POST":
+        data = request.get_json()
+        text = data.get('text')
+        language = data.get('language')
 
+        # Call the translation function
+        translated_text = translate_and_speak(text, language)
+
+        # Return the translated text as JSON
+        return jsonify({'translated_text': translated_text})
+    
 @app.route("/courses")
 def courses():
     #print("Courses")
     return "Courses Page"
+
 @app.route("/scholarship")
 def scholarship_page():
     return render_template("scholarship.html")
+
 @app.route("/eligibility",methods=['POST'])
 def eligibility():
     cgpa=request.form.get("cgpa")
@@ -54,5 +66,6 @@ def eligibility():
     arg_list=train()
     res=scholarship(arg_list[0],arg_list[1],arg_list[2],cgpa,income,citizen,degree)
     return render_template("eligibility.html",res=res)
+
 if __name__ == "__main__":
     app.run(debug=True)

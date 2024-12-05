@@ -1,10 +1,14 @@
 function courses() {
+    console.log("Navigating to Courses..."); // Debugging step
     window.location.href = "/courses";
 }
 
-function hugging() {
-    window.location.href = "/hugging";
+function translate_js() {
+    console.log("Navigating to Translator..."); // Debugging step
+    window.location.href = "/translate";
 }
-function scholarship(){
-    window.location.href="/scholarship"
+
+function scholarship() {
+    console.log("Navigating to Scholarship..."); // Debugging step
+    window.location.href = "/scholarship";
 }

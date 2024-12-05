@@ -1,6 +1,6 @@
 from googletrans import Translator
 from gtts import gTTS
-import os
+
 
 translator = Translator()
 
@@ -15,37 +15,14 @@ def translate_and_speak(text, target_language='kn'):  # Default to Kannada
 
         translated_text = translation.text
 
-        # Create a TTS object
+        # Optionally, create a TTS object and save the audio (not required for this use case)
         tts = gTTS(text=translated_text, lang=target_language)
-
-        # Save the audio file
         tts.save("translation.mp3")
 
-        # Play the audio file (requires a suitable media player on your system)
-        os.system("mpg321 translation.mp3")  # Adjust this if needed for your system
+        # Optionally, play the audio (comment out if not needed)
+        # os.system("mpg321 translation.mp3")  # Adjust this if needed for your system
 
         return translated_text
 
     except Exception as e:
         return f"Error: {e}"
-
-# Example usage:
-text = input("Enter text:\n")
-req_lang = input("Enter required language (Tamil/Hindi/Kannada):\n")
-
-# Language code mapping
-lang_code_map = {
-    "tamil": "ta",
-    "hindi": "hi",
-    "kannada": "kn"
-}
-
-# Get the language code, default to Kannada
-code = lang_code_map.get(req_lang.lower(), "kn")
-
-# Translate and speak
-translated_text = translate_and_speak(text, code)
-
-# Output the results
-print(f"Original: {text}")
-print(f"Translated: {translated_text}")
